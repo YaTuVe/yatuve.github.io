@@ -109,7 +109,13 @@
             <string>YaTuVe</string>
             <key>Icon</key>
             <key>URL</key>
-            <string>https://yatuve.github.io/launch</string>
+<string>https://app.yatuve.com/launch</string>
+<key>Icon</key>
+<data>
+iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAACXBIWXMAAAsTAAALEwEAmpwYAAABGklE
+VQ4T+3BMQ0AIAAF0wKdgAjZgAzZgA5oewYJ5j+cL8MMYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGG
+OM/A28XAQYAHhMXl3wd+pMAAAAASUVORK5CYII=
+</data>
             <key>FullScreen</key>
             <true/>
             <key>IsRemovable</key>
@@ -135,4 +141,5 @@
     <integer>1</integer>
 </dict>
 </plist>
+
 
