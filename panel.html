@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YaTuVe Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            padding: 20px;
+            background: linear-gradient(135deg, #000000 0%, #1a0000 100%);
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: rgba(20, 0, 0, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ff0000;
+        }
+        
+        .header h1 {
+            color: #ff0000;
+            font-size: 28px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .header .status {
+            color: #0f0;
+            font-size: 14px;
+            margin-top: 5px;
+            font-family: monospace;
+        }
+        
+        .control-group {
+            margin-bottom: 25px;
+            background: rgba(255, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+        
+        .control-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .control-title span {
+            font-size: 18px;
+            color: #ff9999;
+        }
+        
+        .switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #ff0000;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+        
+        .slider-config {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .slider-config.active {
+            display: block;
+        }
+        
+        .slider-item {
+            margin: 10px 0;
+        }
+        
+        .slider-item label {
+            display: block;
+            color: #ffcccc;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .range-slider {
+            width: 100%;
+            height: 30px;
+            -webkit-appearance: none;
+            background: rgba(255, 0, 0, 0.2);
+            border-radius: 15px;
+            outline: none;
+        }
+        
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ff0000;
+            cursor: pointer;
+            border: 2px solid white;
+        }
+        
+        .value-display {
+            text-align: right;
+            color: #0f0;
+            font-family: monospace;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #ff0000, #ff3333);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #333, #666);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+        
+        .instructions {
+            background: rgba(255, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #ff9999;
+            border-left: 3px solid #ff0000;
+        }
+        
+        .instructions h3 {
+            color: #ff6666;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin: 5px 0;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>YaTuVe SYSTEM</h1>
+            <div class="status" id="status">🔴 OFFLINE</div>
+        </div>
+        
+        <!-- Aimbot Control -->
+        <div class="control-group">
+            <div class="control-title">
+                <span>🎯 AIMBOT</span>
+                <label class="switch">
+                    <input type="checkbox" id="aimbotToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="slider-config" id="aimbotConfig">
+                <div class="slider-item">
+                    <label>FOV: <span id="fovValue">50</span>°</label>
+                    <input type="range" class="range-slider" id="fovSlider" min="1" max="360" value="50">
+                </div>
+                <div class="slider-item">
+                    <label>Smooth: <span id="smoothValue">2.0</span></label>
+                    <input type="range" class="range-slider" id="smoothSlider" min="1" max="10" step="0.1" value="2.0">
+                </div>
+                <div class="slider-item">
+                    <label>Bone: <span id="boneValue">Head</span></label>
+                    <input type="range" class="range-slider" id="boneSlider" min="0" max="2" value="0">
+                </div>
+            </div>
+        </div>
+        
+        <!-- ESP Control -->
+        <div class="control-group">
+            <div class="control-title">
+                <span>👁️ ESP</span>
+                <label class="switch">
+                    <input type="checkbox" id="espToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="slider-config" id="espConfig">
+                <div class="slider-item">
+                    <label>Box Type: <span id="boxValue">2D</span></label>
+                    <input type="range" class="range-slider" id="boxSlider" min="0" max="2" value="0">
+                </div>
+                <div class="slider-item">
+                    <label>Distance: <span id="distanceValue">300</span>m</label>
+                    <input type="range" class="range-slider" id="distanceSlider" min="50" max="1000" value="300">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Other Features -->
+        <div class="control-group">
+            <div class="control-title">
+                <span>🧱 WALLHACK</span>
+                <label class="switch">
+                    <input type="checkbox" id="wallhackToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <div class="control-title">
+                <span>⚡ NO RECOIL</span>
+                <label class="switch">
+                    <input type="checkbox" id="norecoilToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <div class="control-title">
+                <span>🚀 SPEED HACK</span>
+                <label class="switch">
+                    <input type="checkbox" id="speedToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="slider-config" id="speedConfig">
+                <div class="slider-item">
+                    <label>Multiplier: <span id="speedValue">1.5</span>x</label>
+                    <input type="range" class="range-slider" id="speedSlider" min="1" max="5" step="0.1" value="1.5">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="buttons">
+            <button class="btn btn-primary" onclick="injectToGame()">🔄 INYECTAR AL JUEGO</button>
+            <button class="btn btn-secondary" onclick="saveSettings()">💾 GUARDAR</button>
+            <button class="btn btn-primary" onclick="checkGame()">🎮 BUSCAR JUEGO</button>
+            <button class="btn btn-secondary" onclick="showLogs()">📝 LOGS</button>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>Instrucciones:</h3>
+            <ol>
+                <li>Abre tu juego (Free Fire o similar)</li>
+                <li>Activa los mods que necesites</li>
+                <li>Presiona "INYECTAR AL JUEGO"</li>
+                <li>Regresa al juego y disfruta</li>
+                <li>Mantén esta ventana abierta en segundo plano</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Estado del sistema
+        const config = {
+            aimbot: { enabled: false, fov: 50, smooth: 2.0, bone: 0 },
+            esp: { enabled: false, boxType: 0, distance: 300 },
+            wallhack: false,
+            noRecoil: false,
+            speed: { enabled: false, multiplier: 1.5 },
+            gameConnected: false
+        };
+        
+        // Elementos DOM
+        const statusElement = document.getElementById('status');
+        const toggles = {
+            aimbot: document.getElementById('aimbotToggle'),
+            esp: document.getElementById('espToggle'),
+            wallhack: document.getElementById('wallhackToggle'),
+            norecoil: document.getElementById('norecoilToggle'),
+            speed: document.getElementById('speedToggle')
+        };
+        
+        const sliders = {
+            fov: document.getElementById('fovSlider'),
+            smooth: document.getElementById('smoothSlider'),
+            bone: document.getElementById('boneSlider'),
+            box: document.getElementById('boxSlider'),
+            distance: document.getElementById('distanceSlider'),
+            speed: document.getElementById('speedSlider')
+        };
+        
+        const values = {
+            fov: document.getElementById('fovValue'),
+            smooth: document.getElementById('smoothValue'),
+            bone: document.getElementById('boneValue'),
+            box: document.getElementById('boxValue'),
+            distance: document.getElementById('distanceValue'),
+            speed: document.getElementById('speedValue')
+        };
+        
+        const configPanels = {
+            aimbot: document.getElementById('aimbotConfig'),
+            esp: document.getElementById('espConfig'),
+            speed: document.getElementById('speedConfig')
+        };
+        
+        // Inicialización
+        function init() {
+            loadSettings();
+            setupEventListeners();
+            checkConnection();
+            
+            // Simular conexión con el juego
+            setTimeout(() => {
+                config.gameConnected = true;
+                updateStatus();
+            }, 2000);
+        }
+        
+        function setupEventListeners() {
+            // Toggles
+            toggles.aimbot.addEventListener('change', function() {
+                config.aimbot.enabled = this.checked;
+                configPanels.aimbot.classList.toggle('active', this.checked);
+                sendCommand('aimbot', config.aimbot.enabled);
+            });
+            
+            toggles.esp.addEventListener('change', function() {
+                config.esp.enabled = this.checked;
+                configPanels.esp.classList.toggle('active', this.checked);
+                sendCommand('esp', config.esp.enabled);
+            });
+            
+            toggles.wallhack.addEventListener('change', function() {
+                config.wallhack = this.checked;
+                sendCommand('wallhack', config.wallhack);
+            });
+            
+            toggles.norecoil.addEventListener('change', function() {
+                config.noRecoil = this.checked;
+                sendCommand('norecoil', config.noRecoil);
+            });
+            
+            toggles.speed.addEventListener('change', function() {
+                config.speed.enabled = this.checked;
+                configPanels.speed.classList.toggle('active', this.checked);
+                sendCommand('speed', config.speed);
+            });
+            
+            // Sliders
+            sliders.fov.addEventListener('input', function() {
+                config.aimbot.fov = this.value;
+                values.fov.textContent = this.value;
+                sendCommand('aimbot_fov', config.aimbot.fov);
+            });
+            
+            sliders.smooth.addEventListener('input', function() {
+                config.aimbot.smooth = parseFloat(this.value).toFixed(1);
+                values.smooth.textContent = config.aimbot.smooth;
+                sendCommand('aimbot_smooth', config.aimbot.smooth);
+            });
+            
+            sliders.bone.addEventListener('input', function() {
+                config.aimbot.bone = parseInt(this.value);
+                const bones = ['Head', 'Chest', 'Pelvis'];
+                values.bone.textContent = bones[config.aimbot.bone];
+                sendCommand('aimbot_bone', config.aimbot.bone);
+            });
+            
+            sliders.box.addEventListener('input', function() {
+                config.esp.boxType = parseInt(this.value);
+                const boxes = ['2D', '3D', 'Corner'];
+                values.box.textContent = boxes[config.esp.boxType];
+                sendCommand('esp_box', config.esp.boxType);
+            });
+            
+            sliders.distance.addEventListener('input', function() {
+                config.esp.distance = this.value;
+                values.distance.textContent = this.value;
+                sendCommand('esp_distance', config.esp.distance);
+            });
+            
+            sliders.speed.addEventListener('input', function() {
+                config.speed.multiplier = parseFloat(this.value).toFixed(1);
+                values.speed.textContent = config.speed.multiplier;
+                sendCommand('speed_multiplier', config.speed.multiplier);
+            });
+        }
+        
+        function sendCommand(type, value) {
+            console.log(`[YaTuVe] Enviando comando: ${type} = ${value}`);
+            
+            // Aquí iría la comunicación real con el tweak
+            // Por ahora solo simulamos
+            const commands = {
+                'aimbot': `Aimbot ${value ? 'activado' : 'desactivado'}`,
+                'esp': `ESP ${value ? 'activado' : 'desactivado'}`,
+                'wallhack': `Wallhack ${value ? 'activado' : 'desactivado'}`,
+                'norecoil': `No Recoil ${value ? 'activado' : 'desactivado'}`,
+                'speed': `Speed Hack ${value ? 'activado' : 'desactivado'}`,
+                'aimbot_fov': `Aimbot FOV ajustado a ${value}°`,
+                'aimbot_smooth': `Aimbot Smooth ajustado a ${value}`,
+                'aimbot_bone': `Aimbot Bone ajustado a ${value}`,
+                'esp_box': `ESP Box ajustado a ${value}`,
+                'esp_distance': `ESP Distance ajustado a ${value}m`,
+                'speed_multiplier': `Speed Multiplier ajustado a ${value}x`
+            };
+            
+            if (commands[type]) {
+                showNotification(commands[type]);
+            }
+        }
+        
+        function showNotification(message) {
+            // Crear notificación
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(255, 0, 0, 0.9);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                z-index: 10000;
+                animation: slideDown 0.3s;
+                border: 2px solid white;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+                font-weight: bold;
+                max-width: 80%;
+                text-align: center;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'fadeOut 0.3s';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        function injectToGame() {
+            showNotification('🔌 Inyectando al juego...');
+            
+            // Simular inyección
+            setTimeout(() => {
+                if (config.gameConnected) {
+                    showNotification('✅ Inyección completada!');
+                    config.gameConnected = true;
+                    updateStatus();
+                } else {
+                    showNotification('❌ No se encontró el juego');
+                }
+            }, 1500);
+        }
+        
+        function checkGame() {
+            showNotification('🔍 Buscando juego...');
+            // Aquí iría la detección real del proceso del juego
+        }
+        
+        function saveSettings() {
+            localStorage.setItem('yatuve_config', JSON.stringify(config));
+            showNotification('💾 Configuración guardada');
+        }
+        
+        function loadSettings() {
+            const saved = localStorage.getItem('yatuve_config');
+            if (saved) {
+                Object.assign(config, JSON.parse(saved));
+                
+                // Aplicar configuración cargada
+                toggles.aimbot.checked = config.aimbot.enabled;
+                toggles.esp.checked = config.esp.enabled;
+                toggles.wallhack.checked = config.wallhack;
+                toggles.norecoil.checked = config.noRecoil;
+                toggles.speed.checked = config.speed.enabled;
+                
+                sliders.fov.value = config.aimbot.fov;
+                sliders.smooth.value = config.aimbot.smooth;
+                sliders.bone.value = config.aimbot.bone;
+                sliders.box.value = config.esp.boxType;
+                sliders.distance.value = config.esp.distance;
+                sliders.speed.value = config.speed.multiplier;
+                
+                values.fov.textContent = config.aimbot.fov;
+                values.smooth.textContent = config.aimbot.smooth;
+                values.bone.textContent = ['Head', 'Chest', 'Pelvis'][config.aimbot.bone];
+                values.box.textContent = ['2D', '3D', 'Corner'][config.esp.boxType];
+                values.distance.textContent = config.esp.distance;
+                values.speed.textContent = config.speed.multiplier;
+                
+                configPanels.aimbot.classList.toggle('active', config.aimbot.enabled);
+                configPanels.esp.classList.toggle('active', config.esp.enabled);
+                configPanels.speed.classList.toggle('active', config.speed.enabled);
+            }
+        }
+        
+        function checkConnection() {
+            // Simular verificación de conexión
+            const connected = Math.random() > 0.3;
+            config.gameConnected = connected;
+            updateStatus();
+        }
+        
+        function updateStatus() {
+            if (config.gameConnected) {
+                statusElement.textContent = '🟢 CONECTADO AL JUEGO';
+                statusElement.style.color = '#0f0';
+            } else {
+                statusElement.textContent = '🔴 JUEGO NO ENCONTRADO';
+                statusElement.style.color = '#f00';
+            }
+        }
+        
+        function showLogs() {
+            showNotification('📊 Logs del sistema:\n' +
+                           `Aimbot: ${config.aimbot.enabled ? 'ON' : 'OFF'}\n` +
+                           `ESP: ${config.esp.enabled ? 'ON' : 'OFF'}\n` +
+                           `Wallhack: ${config.wallhack ? 'ON' : 'OFF'}\n` +
+                           `No Recoil: ${config.noRecoil ? 'ON' : 'OFF'}\n` +
+                           `Speed: ${config.speed.enabled ? 'ON' : 'OFF'}`);
+        }
+        
+        // Inyectar estilos de animación
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideDown {
+                from { transform: translate(-50%, -100%); opacity: 0; }
+                to { transform: translate(-50%, 0); opacity: 1; }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Inicializar
+        init();
+    </script>
+</body>
+</html>
