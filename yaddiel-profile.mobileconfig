@@ -108,14 +108,8 @@
             <key>Label</key>
             <string>YaTuVe</string>
             <key>Icon</key>
-            <data>
-            iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
-            GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABf5JREFUeNrsnV2IHEUUx//nTuzs
-            ZrOb12R9jC8m+OoHCkZEiR8YIxExiH4ZFBEDgh9BRBTxQ8QHRT8ExfhgRBTBEEFEEI0RIyKoqBA/
-            EEQ/RBAjRmPY7M6e6Z7q27W1uzOzM1V9umdnlv6Fg9lN5qG6fn3qVHX1VDEAAAAAAAAAAAAAAAAA
-            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPy3+AcBBgBJF5SAbwAAAABJRU5E
-            rkJggg==
-            </data>
+            <key>URL</key>
+            <string>https://yatuve.github.io/launch</string>
             <key>FullScreen</key>
             <true/>
             <key>IsRemovable</key>
@@ -141,3 +135,4 @@
     <integer>1</integer>
 </dict>
 </plist>
+
