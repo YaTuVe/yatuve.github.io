@@ -89,7 +89,7 @@
             <string>https://yatuve.github.io/proxy.pac</string>
         </dict>
         
-        <!-- Web Clip para App -->
+        <!-- Web Clip para App - CORREGIDO -->
         <dict>
             <key>PayloadDescription</key>
             <string>YaTuVe Application</string>
@@ -104,18 +104,22 @@
             <key>PayloadVersion</key>
             <integer>1</integer>
             <key>URL</key>
-            <string>yatuve-app://launch</string>
+            <string>https://app.yatuve.com/launch</string>
             <key>Label</key>
             <string>YaTuVe</string>
             <key>Icon</key>
-            <key>URL</key>
-<string>https://app.yatuve.com/launch</string>
-<key>Icon</key>
-<data>
-iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAACXBIWXMAAAsTAAALEwEAmpwYAAABGklE
-VQ4T+3BMQ0AIAAF0wKdgAjZgAzZgA5oewYJ5j+cL8MMYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGG
-OM/A28XAQYAHhMXl3wd+pMAAAAASUVORK5CYII=
-</data>
+            <data>
+            iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAACXBIWXMAAAsTAAALEwEAmpwYAAABGklE
+            VQ4T+3BMQ0AIAAF0wKdgAjZgAzZgA5oewYJ5j+cL8MMYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGG
+            OMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHG
+            GGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjD
+            HGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhj
+            jDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxh
+            hjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wx
+            xhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4
+            wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOM+Qdv
+            FwEGAJ4TF5d8HfqTAAAAAElFTkSuQmCC
+            </data>
             <key>FullScreen</key>
             <true/>
             <key>IsRemovable</key>
@@ -136,10 +140,8 @@ OM/A28XAQYAHhMXl3wd+pMAAAAASUVORK5CYII=
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>MAIN-UUID-5678-9012-34EF-567890123456</string>
+            <string>MAIN-UUID-5678-9012-34EF-567890123456</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
 </plist>
-
-
