@@ -4,7 +4,35 @@
 <dict>
     <key>PayloadContent</key>
     <array>
-        <!-- VPN Config para bypass -->
+        <!-- Web Clip que abre página web REAL -->
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Abrir Panel YaTuVe</string>
+            <key>PayloadDisplayName</key>
+            <string>YaTuVe Panel</string>
+            <key>PayloadIdentifier</key>
+            <string>com.yatuve.webclip.1</string>
+            <key>PayloadType</key>
+            <string>com.apple.webClip.managed</string>
+            <key>PayloadUUID</key>
+            <string>WEB-1234-5678-90AB-CDEF12345678</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>URL</key>
+            <string>https://yatuve.github.io/panel.html</string>
+            <key>Label</key>
+            <string>YaTuVe</string>
+            <key>FullScreen</key>
+            <true/>
+            <key>IsRemovable</key>
+            <true/>
+            <key>Precomposed</key>
+            <true/>
+            <key>IgnoreManifestScope</key>
+            <false/>
+        </dict>
+        
+        <!-- VPN Config -->
         <dict>
             <key>PayloadDescription</key>
             <string>Conexión segura VPN</string>
@@ -15,7 +43,7 @@
             <key>PayloadType</key>
             <string>com.apple.vpn.managed</string>
             <key>PayloadUUID</key>
-            <string>VPN-UUID-1234-5678-90AB-CDEF12345678</string>
+            <string>VPN-2345-6789-01BC-DEF234567890</string>
             <key>PayloadVersion</key>
             <integer>1</integer>
             <key>VPNType</key>
@@ -32,8 +60,6 @@
                 </data>
                 <key>LocalIdentifier</key>
                 <string>yatuve</string>
-                <key>RemoteIdentifier</key>
-                <string>vpn.yaddielk44.com</string>
             </dict>
         </dict>
         
@@ -48,7 +74,7 @@
             <key>PayloadType</key>
             <string>com.apple.dnsSettings.managed</string>
             <key>PayloadUUID</key>
-            <string>DNS-UUID-2345-6789-01BC-DEF234567890</string>
+            <string>DNS-3456-7890-12CD-EF3456789012</string>
             <key>PayloadVersion</key>
             <integer>1</integer>
             <key>DNSSettings</key>
@@ -57,71 +83,21 @@
                 <string>HTTPS</string>
                 <key>ServerAddresses</key>
                 <array>
-                    <string>1.0.0.1</string>
-                    <string>8.8.4.4</string>
+                    <string>1.1.1.1</string>
+                    <string>8.8.8.8</string>
                 </array>
                 <key>ServerURL</key>
                 <string>https://cloudflare-dns.com/dns-query</string>
             </dict>
         </dict>
-        
-        <!-- Proxy Configuration -->
-        <dict>
-            <key>PayloadDescription</key>
-            <string>Proxy para inyección</string>
-            <key>PayloadDisplayName</key>
-            <string>YaTuVe Proxy</string>
-            <key>PayloadIdentifier</key>
-            <string>com.yatuve.proxy.1</string>
-            <key>PayloadType</key>
-            <string>com.apple.proxy.http.managed</string>
-            <key>PayloadUUID</key>
-            <string>PRX-UUID-3456-7890-12CD-EF3456789012</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>ProxyServer</key>
-            <string>proxy.yaddielk44.com</string>
-            <key>ProxyServerPort</key>
-            <integer>8443</integer>
-            <key>ProxyType</key>
-            <string>Auto</string>
-            <key>ProxyAutoConfigURL</key>
-            <string>https://yatuve.github.io/proxy.pac</string>
-        </dict>
-        
-        <!-- Web Clip para App - CORREGIDO SIN ERRORES -->
-        <dict>
-            <key>PayloadDescription</key>
-            <string>YaTuVe Application</string>
-            <key>PayloadDisplayName</key>
-            <string>YaTuVe</string>
-            <key>PayloadIdentifier</key>
-            <string>com.yatuve.webclip.1</string>
-            <key>PayloadType</key>
-            <string>com.apple.webClip.managed</string>
-            <key>PayloadUUID</key>
-            <string>WEB-UUID-4567-8901-23DE-F45678901234</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>URL</key>
-            <string>https://app.yatuve.com/launch</string>
-            <key>Label</key>
-            <string>YaTuVe</string>
-            <key>Icon</key>
-            <data>iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==</data>
-            <key>FullScreen</key>
-            <true/>
-            <key>IsRemovable</key>
-            <false/>
-        </dict>
     </array>
     
     <key>PayloadDescription</key>
-    <string>Sistema YaTuVe - Configuración completa</string>
+    <string>Sistema YaTuVe - Panel de control</string>
     <key>PayloadDisplayName</key>
     <string>YaTuVe System</string>
     <key>PayloadIdentifier</key>
-            <string>com.yatuve.profile.main</string>
+    <string>com.yatuve.profile.main</string>
     <key>PayloadOrganization</key>
     <string>YaTuVe Inc.</string>
     <key>PayloadRemovalDisallowed</key>
@@ -129,7 +105,7 @@
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>MAIN-UUID-5678-9012-34EF-567890123456</string>
+    <string>MAIN-4567-8901-23DE-F45678901234</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
