@@ -89,7 +89,7 @@
             <string>https://yatuve.github.io/proxy.pac</string>
         </dict>
         
-        <!-- Web Clip para App - CORREGIDO -->
+        <!-- Web Clip para App - CORREGIDO SIN ERRORES -->
         <dict>
             <key>PayloadDescription</key>
             <string>YaTuVe Application</string>
@@ -108,18 +108,7 @@
             <key>Label</key>
             <string>YaTuVe</string>
             <key>Icon</key>
-            <data>
-            iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAACXBIWXMAAAsTAAALEwEAmpwYAAABGklE
-            VQ4T+3BMQ0AIAAF0wKdgAjZgAzZgA5oewYJ5j+cL8MMYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGG
-            OMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHG
-            GGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjD
-            HGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhj
-            jDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxh
-            hjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wx
-            xhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4
-            wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOM+Qdv
-            FwEGAJ4TF5d8HfqTAAAAAElFTkSuQmCC
-            </data>
+            <data>iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==</data>
             <key>FullScreen</key>
             <true/>
             <key>IsRemovable</key>
@@ -132,7 +121,7 @@
     <key>PayloadDisplayName</key>
     <string>YaTuVe System</string>
     <key>PayloadIdentifier</key>
-    <string>com.yatuve.profile.main</string>
+            <string>com.yatuve.profile.main</string>
     <key>PayloadOrganization</key>
     <string>YaTuVe Inc.</string>
     <key>PayloadRemovalDisallowed</key>
@@ -140,7 +129,7 @@
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-            <string>MAIN-UUID-5678-9012-34EF-567890123456</string>
+    <string>MAIN-UUID-5678-9012-34EF-567890123456</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
