@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YaTuVe - Panel de Control</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .main-title {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            color: #ff0000;
+            font-size: 3rem;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            letter-spacing: 3px;
+        }
+        
+        .user-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+            background: rgba(255, 0, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 0, 0.5);
+        }
+        
+        .hack-menu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #ff0000;
+            border-radius: 15px;
+            padding: 30px;
+            width: 400px;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .hack-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hack-item:last-child {
+            border-bottom: none;
+        }
+        
+        .hack-name {
+            color: #ff9999;
+            font-size: 1.2rem;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #ff0000;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+        
+        .status-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff0000;
+        }
+        
+        .status-item {
+            margin: 5px 0;
+            color: #0f0;
+            font-family: monospace;
+        }
+        
+        .status-item.off {
+            color: #f00;
+        }
+        
+        .logout-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2;
+            background: rgba(255, 0, 0, 0.3);
+            color: white;
+            border: 1px solid #ff0000;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .menu-title {
+            text-align: center;
+            color: #ff0000;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        
+        .control-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .control-btn {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <h1 class="main-title">YATUVE SYSTEM</h1>
+    
+    <div class="user-info" id="userInfo">
+        Usuario: <strong>admin</strong><br>
+        Status: 🟢 CONECTADO
+    </div>
+    
+    <div class="hack-menu">
+        <h2 class="menu-title">PANEL DE CONTROL</h2>
+        
+        <div class="hack-item">
+            <span class="hack-name">Aimbot</span>
+            <label class="switch">
+                <input type="checkbox" id="aimbot">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div class="hack-item">
+            <span class="hack-name">Wallhack</span>
+            <label class="switch">
+                <input type="checkbox" id="wallhack">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div class="hack-item">
+            <span class="hack-name">Speed Hack</span>
+            <label class="switch">
+                <input type="checkbox" id="speed">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div class="hack-item">
+            <span class="hack-name">No Recoil</span>
+            <label class="switch">
+                <input type="checkbox" id="norecoil">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div class="control-panel">
+            <button class="control-btn" onclick="refreshConnection()">🔄 Refresh</button>
+            <button class="control-btn" onclick="checkStatus()">📊 Status</button>
+            <button class="control-btn" onclick="openAdmin()">⚙️ Admin</button>
+            <button class="control-btn" onclick="installProfile()">📱 Profile</button>
+        </div>
+    </div>
+    
+    <div class="status-indicator" id="statusIndicator">
+        <div class="status-item" id="statusAimbot">Aimbot: OFF</div>
+        <div class="status-item" id="statusWallhack">Wallhack: OFF</div>
+        <div class="status-item" id="statusSpeed">Speed: OFF</div>
+        <div class="status-item" id="statusNoRecoil">No Recoil: OFF</div>
+        <div class="status-item">Proxy: 🟢 ACTIVE</div>
+        <div class="status-item">DNS: 🟢 ACTIVE</div>
+    </div>
+    
+    <button class="logout-btn" onclick="logout()">CERRAR SESIÓN</button>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: "#ff0000" },
+                shape: { type: "circle" },
+                opacity: { value: 0.6, random: true },
+                size: { value: 4, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ff3333",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 5,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out"
+                }
+            }
+        });
+        
+        const hacks = ['aimbot', 'wallhack', 'speed', 'norecoil'];
+        
+        hacks.forEach(hackId => {
+            const checkbox = document.getElementById(hackId);
+            const statusElement = document.getElementById('status' + hackId.charAt(0).toUpperCase() + hackId.slice(1));
+            
+            checkbox.addEventListener('change', function() {
+                const isOn = this.checked;
+                if (isOn) {
+                    statusElement.textContent = statusElement.textContent.replace('OFF', 'ON');
+                    statusElement.classList.remove('off');
+                    showNotification(`${hackId.toUpperCase()} ACTIVADO`);
+                } else {
+                    statusElement.textContent = statusElement.textContent.replace('ON', 'OFF');
+                    statusElement.classList.add('off');
+                    showNotification(`${hackId.toUpperCase()} DESACTIVADO`);
+                }
+                localStorage.setItem(`yatuve_${hackId}`, isOn);
+            });
+            
+            const saved = localStorage.getItem(`yatuve_${hackId}`);
+            if (saved === 'true') {
+                checkbox.checked = true;
+                checkbox.dispatchEvent(new Event('change'));
+            }
+        });
+        
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: rgba(255, 0, 0, 0.8);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                z-index: 1000;
+                animation: slideIn 0.3s, fadeOut 0.3s 2.7s;
+                border: 1px solid #ff0000;
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+        
+        function refreshConnection() {
+            showNotification('🔄 Refrescando conexión...');
+            setTimeout(() => showNotification('✅ Conexión estable'), 1000);
+        }
+        
+        function checkStatus() {
+            showNotification('📊 Estado del sistema: 🟢 TODO OK');
+        }
+        
+        function openAdmin() {
+            window.open('admin-panel.html', '_blank');
+        }
+        
+        function installProfile() {
+            window.open('https://yatuve.github.io/yaddiel-profile.mobileconfig', '_blank');
+            showNotification('📱 Descargando perfil...');
+        }
+        
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        showNotification('🚀 YaTuVe System iniciado');
+    </script>
+</body>
+</html>

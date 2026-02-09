@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YaTuVe System - Acceso</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔴</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .main-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #ff0000;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo h1 {
+            color: #ff0000;
+            font-size: 2.8rem;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .logo p {
+            color: #ff6666;
+            font-size: 1.1rem;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: rgba(0, 255, 0, 0.2);
+            color: #0f0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            border: 1px solid #0f0;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff9999;
+            font-size: 1rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 0, 0, 0.5);
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #ff0000, #ff3333);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #ff3333, #ff0000);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+            transform: translateY(-3px);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #007aff, #0056cc);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(45deg, #0056cc, #007aff);
+            box-shadow: 0 0 30px rgba(0, 122, 255, 0.6);
+            transform: translateY(-3px);
+        }
+        
+        .btn-success {
+            background: linear-gradient(45deg, #34c759, #28a745);
+        }
+        
+        .btn-success:hover {
+            background: linear-gradient(45deg, #28a745, #34c759);
+            box-shadow: 0 0 30px rgba(52, 199, 89, 0.6);
+            transform: translateY(-3px);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .info-panel {
+            background: rgba(255, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 25px;
+            border-left: 5px solid #ff0000;
+        }
+        
+        .info-panel h3 {
+            color: #ff9999;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .credential-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .credential-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .credential-label {
+            color: #ffcccc;
+        }
+        
+        .credential-value {
+            color: #0f0;
+            font-family: monospace;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .alert-error {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff9999;
+            border: 1px solid rgba(255, 0, 0, 0.5);
+        }
+        
+        .alert-success {
+            background: rgba(0, 255, 0, 0.2);
+            color: #9f9;
+            border: 1px solid rgba(0, 255, 0, 0.5);
+        }
+        
+        .alert-warning {
+            background: rgba(255, 255, 0, 0.2);
+            color: #ff9;
+            border: 1px solid rgba(255, 255, 0, 0.5);
+        }
+        
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .quick-link {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            color: #ff9999;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+        
+        .quick-link:hover {
+            background: rgba(255, 0, 0, 0.2);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        .github-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid #ff0000;
+            z-index: 100;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .github-badge:hover {
+            background: rgba(255, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 10px;
+            }
+            
+            .login-card {
+                padding: 30px 20px;
+            }
+            
+            .logo h1 {
+                font-size: 2.2rem;
+            }
+            
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="main-container">
+        <div class="login-card">
+            <div class="logo">
+                <h1>YaTuVe</h1>
+                <p>Sistema de Inyección Premium</p>
+                <div class="status-badge">🟢 ONLINE</div>
+            </div>
+            
+            <div class="alert" id="alertMessage"></div>
+            
+            <div class="form-group">
+                <label for="username">👤 Usuario</label>
+                <input type="text" id="username" class="form-input" placeholder="admin" value="admin" autocomplete="username">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">🔑 Contraseña</label>
+                <input type="password" id="password" class="form-input" placeholder="admin123" value="admin123" autocomplete="current-password">
+            </div>
+            
+            <button class="btn btn-primary" onclick="authenticate()">
+                <span>🚀 ENTRAR AL PANEL</span>
+            </button>
+            
+            <button class="btn btn-secondary" onclick="installProfile()">
+                <span>📱 INSTALAR PERFIL</span>
+            </button>
+            
+            <button class="btn btn-success" onclick="downloadApp()">
+                <span>⬇️ DESCARGAR APP</span>
+            </button>
+            
+            <div class="info-panel">
+                <h3>🔐 Credenciales de Acceso</h3>
+                <div class="credential-item">
+                    <span class="credential-label">Usuario:</span>
+                    <span class="credential-value">admin</span>
+                </div>
+                <div class="credential-item">
+                    <span class="credential-label">Contraseña:</span>
+                    <span class="credential-value">admin123</span>
+                </div>
+                <div class="credential-item">
+                    <span class="credential-label">Proxy Server:</span>
+                    <span class="credential-value">proxy.yaddielk44.com:8443</span>
+                </div>
+                <div class="credential-item">
+                    <span class="credential-label">DNS Servers:</span>
+                    <span class="credential-value">1.1.1.1, 8.8.8.8</span>
+                </div>
+                <div class="credential-item">
+                    <span class="credential-label">Status:</span>
+                    <span class="credential-value">🟢 ACTIVO</span>
+                </div>
+            </div>
+            
+            <div class="quick-links">
+                <a href="https://yatuve.github.io/yaddiel-profile.mobileconfig" class="quick-link">
+                    📲 Perfil Directo
+                </a>
+                <a href="admin-panel.html" class="quick-link">
+                    ⚙️ Admin Panel
+                </a>
+                <a href="https://github.com/YaTuVe" class="quick-link" target="_blank">
+                    💻 GitHub
+                </a>
+                <a href="yaddiel-inyect.html?user=admin" class="quick-link">
+                    🎮 Panel Hacks
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <a href="https://github.com/YaTuVe" class="github-badge" target="_blank">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="white">
+            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+        @YaTuVe
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Configuración de partículas
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 150, density: { enable: true, value_area: 1000 } },
+                color: { value: "#ff0000" },
+                shape: { type: "circle" },
+                opacity: { value: 0.6, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
+                size: { value: 4, random: true, anim: { enable: true, speed: 2, size_min: 0.1 } },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ff3333",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 4,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: { enable: false }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        function showAlert(message, type = 'error') {
+            const alert = document.getElementById('alertMessage');
+            alert.textContent = message;
+            alert.className = `alert alert-${type}`;
+            alert.style.display = 'block';
+            
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 5000);
+        }
+        
+        function authenticate() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            if (!username || !password) {
+                showAlert('Por favor completa todos los campos', 'warning');
+                return;
+            }
+            
+            const validUsers = {
+                'admin': 'admin123',
+                'yaddiel': '123456',
+                'user': 'pass123',
+                'yatuve': 'yatuve2024'
+            };
+            
+            if (validUsers[username] && validUsers[username] === password) {
+                localStorage.setItem('yatuve_user', username);
+                localStorage.setItem('yatuve_logged', 'true');
+                localStorage.setItem('yatuve_session', Date.now().toString());
+                
+                showAlert('✅ Acceso exitoso! Redirigiendo...', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = `yaddiel-inyect.html?user=${encodeURIComponent(username)}&token=${btoa(username + ':' + Date.now())}`;
+                }, 1000);
+            } else {
+                showAlert('❌ Credenciales incorrectas. Usa admin/admin123', 'error');
+            }
+        }
+        
+        function installProfile() {
+            const username = document.getElementById('username').value.trim() || 'admin';
+            showAlert('📱 Descargando perfil de configuración...', 'success');
+            
+            setTimeout(() => {
+                window.open('https://yatuve.github.io/yaddiel-profile.mobileconfig', '_blank');
+                showAlert('✅ Perfil descargado. Ábrelo en iOS para instalar', 'success');
+            }, 500);
+        }
+        
+        function downloadApp() {
+            showAlert('⬇️ Preparando descarga de aplicación...', 'success');
+            
+            setTimeout(() => {
+                window.open('https://yatuve.github.io/YaTuVeApp.ipa', '_blank');
+                showAlert('📦 App descargada. Usa AltStore o Sideloadly para instalar', 'success');
+            }, 500);
+        }
+        
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') authenticate();
+        });
+        
+        document.getElementById('username').focus();
+        
+        console.log('🚀 YaTuVe System iniciado');
+        console.log('👤 GitHub: YaTuVe');
+        console.log('🌐 URL: https://yatuve.github.io/');
+        console.log('📱 Sistema listo para iOS');
+    </script>
+</body>
+</html>
