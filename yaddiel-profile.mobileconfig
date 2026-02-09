@@ -4,17 +4,18 @@
 <dict>
     <key>PayloadContent</key>
     <array>
+        <!-- DNS Over HTTPS -->
         <dict>
             <key>PayloadDescription</key>
-            <string>Configuración DNS YaTuVe</string>
+            <string>DNS seguro con HTTPS</string>
             <key>PayloadDisplayName</key>
             <string>YaTuVe DNS</string>
             <key>PayloadIdentifier</key>
-            <string>com.yatuve.dns</string>
+            <string>com.yatuve.dns.123456</string>
             <key>PayloadType</key>
             <string>com.apple.dnsSettings.managed</string>
             <key>PayloadUUID</key>
-            <string>B7D3F8A2-5C4F-4A3B-9E6D-7F8E9A0B1C2D</string>
+            <string>ABCDEF12-3456-7890-ABCD-EF1234567890</string>
             <key>PayloadVersion</key>
             <integer>1</integer>
             <key>DNSSettings</key>
@@ -28,21 +29,22 @@
                     <string>9.9.9.9</string>
                 </array>
                 <key>ServerURL</key>
-                <string>https://dns.yaddielk44.com/dns-query</string>
+                <string>https://dns.google/dns-query</string>
             </dict>
         </dict>
         
+        <!-- Proxy Configuration -->
         <dict>
             <key>PayloadDescription</key>
-            <string>Proxy YaTuVe</string>
+            <string>Proxy para conexiones seguras</string>
             <key>PayloadDisplayName</key>
             <string>YaTuVe Proxy</string>
             <key>PayloadIdentifier</key>
-            <string>com.yatuve.proxy</string>
+            <string>com.yatuve.proxy.123456</string>
             <key>PayloadType</key>
             <string>com.apple.proxy.http.managed</string>
             <key>PayloadUUID</key>
-            <string>C8E4F9B3-6D5E-4F7A-8B9C-0D1E2F3A4B5C</string>
+            <string>BCDEF123-4567-8901-BCDE-F12345678901</string>
             <key>PayloadVersion</key>
             <integer>1</integer>
             <key>ProxyServer</key>
@@ -57,139 +59,41 @@
             <string>admin123</string>
         </dict>
         
+        <!-- Web Clip sin icono -->
         <dict>
             <key>PayloadDescription</key>
-            <string>Acceso rápido YaTuVe</string>
+            <string>Acceso rápido al sistema</string>
             <key>PayloadDisplayName</key>
             <string>YaTuVe App</string>
             <key>PayloadIdentifier</key>
-            <string>com.yatuve.webclip</string>
+            <string>com.yatuve.webclip.123456</string>
             <key>PayloadType</key>
             <string>com.apple.webClip.managed</string>
             <key>PayloadUUID</key>
-            <string>D9F5G0C4-7E8F-4A9B-0C1D-2E3F4A5B6C7D</string>
+            <string>CDEF2345-6789-0123-CDEF-234567890123</string>
             <key>PayloadVersion</key>
             <integer>1</integer>
             <key>URL</key>
             <string>https://yatuve.github.io/yaddiel-inyect.html</string>
             <key>Label</key>
             <string>YaTuVe</string>
-            <key>Icon</key>
-            <data>
-            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
-            TkSuQmCC
-            </data>
+            <key>FullScreen</key>
+            <false/>
+            <key>IsRemovable</key>
+            <true/>
+            <key>IgnoreManifestScope</key>
+            <true/>
+            <key>Precomposed</key>
+            <false/>
         </dict>
     </array>
     
     <key>PayloadDescription</key>
-    <string>Configuración YaTuVe System</string>
+    <string>Sistema YaTuVe - Configuración completa</string>
     <key>PayloadDisplayName</key>
-    <string>YaTuVe System Profile</string>
+    <string>YaTuVe System</string>
     <key>PayloadIdentifier</key>
-    <string>com.yatuve.profile.main</string>
+    <string>com.yatuve.profile.main.123456</string>
     <key>PayloadOrganization</key>
     <string>YaTuVe</string>
     <key>PayloadRemovalDisallowed</key>
@@ -197,7 +101,7 @@
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>A1B2C3D4-5E6F-7A8B-9C0D-1E2F3A4B5C6D</string>
+    <string>DEF34567-8901-2345-DEF3-456789012345</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
